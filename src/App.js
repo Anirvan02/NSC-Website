@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import "./App.css";
 
 function Header() {
@@ -109,9 +110,9 @@ function About() {
             and development projects.
           </p>
           <p>
-            With years of experience and a reputation for excellence, National
-            Sales Corporation continues to be the go-to supplier for industries
-            seeking high-quality products and dependable service.
+            With years of experience and a reputation for excellence, we continue 
+            to be the go-to supplier for industries seeking high-quality products 
+            and dependable service.
           </p>
           <a href="#Materials" class="abt-btn">
             Explore materials
@@ -193,8 +194,8 @@ function Materials() {
       title: "Hardware",
       image: "/images/hardware.jpg",
       description: `Our hardware items include a wide range of essential tools and components 
-      such as nuts, bolts, screws, fasteners, hinges, locks, and more. These high-quality 
-      materials are designed for durability and precision, suitable for construction, 
+      such as nuts, bolts, screws, hacksaw blades, fasteners, hinges, locks, GI pipe fittings and more. 
+      These high-quality materials are designed for durability and precision, suitable for construction, 
       manufacturing, and maintenance projects.`,
     },
     {
@@ -217,9 +218,26 @@ function Materials() {
       title: "Machinery Equipments",
       image: "images/machinary.jpg",
       description: `Our range of machinery equipment covers heavy-duty industrial tools and machines 
-      including compressors, generators, drills, welding machines, and more. These equipment 
-      are engineered for performance, reliability, and efficiency to support your manufacturing, 
-      construction, and industrial operations.`,
+      including compressors, generators, drills, welding machines, and more. We also specialize in 
+      concrete machinery such as mixer machines (10/7), mini mixer machines, earth hammers, vibrator 
+      machines with nozzles, and vibrator needles. All necessary accessories and individual spare parts 
+      for these machines are readily available.`,
+    },
+    {
+      title: "Bricks",
+      image: "images/bricks.jpg",
+      description: `We offer a diverse range of high-quality bricks to meet various construction needs, 
+      including red clay bricks, cement bricks, and AAC (Autoclaved Aerated Concrete) blocks. 
+      Each type is manufactured for strength, uniformity, and durability that are suitable for residential, 
+      commercial, and industrial projects.`,
+    },
+    {
+      title: "Plywood",
+      image: "images/plywood.jpg",
+      description: `Our plywood includes shuttering plywood (4000 grade), film-coated plywood 
+      available in 30kg and 23kg (12mm), and high-quality commercial plywood in all standard sizes. 
+      We also supply MDF boards, gypsum boards, and durable ACC sheets. All products are manufactured 
+      to meet durability standards making it ideal for industrial applications.`,
     },
   ];
 
@@ -288,6 +306,19 @@ function Materials() {
 }
 
 function Contact() {
+    useEffect(() => {
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwJkTUgNBSrA6gql7P95uUFWg3alH-HFNUQSAV3iXb8I4N1HbU_m4X0TPbNQJm3mSn9/exec';
+    const form = document.forms['contact-form'];
+
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(() => alert("Thank you! your form is submitted successfully." ))
+      .then(() => { window.location.reload(); })
+      .catch(error => console.error('Error!', error.message))
+    })
+  }, []);
+
   return (
     <div className="contact-container" id="Contact">
       <h1>&mdash; CONTACT US &mdash;</h1>
@@ -318,17 +349,17 @@ function Contact() {
               method="post"
               action="https://script.google.com/macros/s/AKfycbzWW1tWYdW3KmLfLUSo3qHbwaL3KbHWhggew6A90wBrSRO3efOW2-Zd2_ClKwf4lYEW/exec"
             >
-              <input type="text" name="Name" placeholder="Your name" required />
+              <input type="text" name="Name" placeholder="Your Fullname" required />
               <input
                 type="email"
                 name="Email"
-                placeholder="Your email"
+                placeholder="Your Email"
                 required
               />
               <textarea
                 name="Message"
                 rows="10"
-                placeholder="Your message"
+                placeholder="Your Message"
               ></textarea>
               <button type="submit" className="btn btn2">
                 Submit
