@@ -92,7 +92,7 @@ function About() {
   return (
     <>
       <div className="about" id="About">
-        <h1 class="abt-heading">&mdash; ABOUT US &mdash;</h1>
+        <h1>&mdash; ABOUT US &mdash;</h1>
         <div class="abt-content">
           <h3>Why National Sales Corporation?</h3>
           <p>
