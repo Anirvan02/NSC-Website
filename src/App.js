@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 function Header() {
@@ -19,6 +19,9 @@ function Header() {
         </a>
         <a href="#Materials" className="nav_item">
           Materials
+        </a>
+        <a href="#gallery" className="nav_item">
+          Gallery
         </a>
         <a href="#Contact" className="nav_item">
           Contact
@@ -305,6 +308,97 @@ function Materials() {
   );
 }
 
+function Gallery() {
+  const images = [
+    "/images/gallery2.jpg",
+    "/images/gallery3.jpg",
+    "/images/gallery4.jpg",
+    "/images/gallery5.jpg",
+    "/images/gallery6.jpg",
+    "/images/gallery7.jpg",
+    "/images/gallery8.jpg",
+    "/images/gallery9.jpg",
+    "/images/gallery10.jpg",
+    "/images/gallery11.jpg",
+    "/images/gallery12.jpg",
+    "/images/gallery13.jpg",
+    "/images/gallery14.jpg",
+  
+    "/images/gallery16.jpg",
+    "/images/gallery17.jpg",
+    "/images/gallery18.jpg",
+    "/images/gallery19.jpg",
+    "/images/gallery20.jpg",
+    "/images/gallery21.jpg",
+    "/images/gallery22.jpg",
+    "/images/gallery23.jpg",
+    "/images/gallery24.jpg",
+    "/images/gallery25.jpg",
+    "/images/gallery26.jpg",
+    "/images/gallery27.jpg",
+    "/images/gallery28.jpg",
+    "/images/gallery29.jpg",
+    "/images/gallery30.jpg",
+  ];
+
+  const [selectedIndex, setSelectedIndex] = React.useState(null);
+
+  const showPrev = (e) => {
+    e.stopPropagation();
+    setSelectedIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const showNext = (e) => {
+    e.stopPropagation();
+    setSelectedIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const closeLightbox = () => {
+    setSelectedIndex(null);
+  };
+
+  React.useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (selectedIndex === null) return;
+      if (e.key === "ArrowLeft") showPrev(e);
+      if (e.key === "ArrowRight") showNext(e);
+      if (e.key === "Escape") closeLightbox();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedIndex]);
+
+  return (
+    <div className="portfolio-section" id="gallery">
+      <h1 className="gallery-heading">&mdash; GALLERY &mdash;</h1>
+      <div className="gallery">
+        {images.map((src, index) => (
+          <img
+            key={index}
+            src={src}
+            alt={`Render ${index + 1}`}
+            onClick={() => setSelectedIndex(index)}
+            className="gallery-image"
+          />
+        ))}
+      </div>
+
+      {selectedIndex !== null && (
+        <div className="lightbox" onClick={closeLightbox}>
+          <button className="nav-button left" onClick={showPrev}>
+            ‹
+          </button>
+          <img src={images[selectedIndex]} alt="Enlarged view" />
+          <button className="nav-button right" onClick={showNext}>
+            ›
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+
 function Contact() {
     useEffect(() => {
     const scriptURL = 'https://script.google.com/macros/s/AKfycbwJkTUgNBSrA6gql7P95uUFWg3alH-HFNUQSAV3iXb8I4N1HbU_m4X0TPbNQJm3mSn9/exec';
@@ -336,7 +430,7 @@ function Contact() {
               <i className="fa-solid fa-envelope"></i>nscindia2@gmail.com
             </p>
             <p>
-              <i className="fas fa-phone-square-alt"></i>+91 9733148724
+              <i className="fas fa-phone-square-alt"></i>Mob: +91 9733148724 <br /> Tele: 03566 451710 <br /> B.Mob: +975 77602941
             </p>
             <p>
               <i className="fa-solid fa-location-dot"></i>M.G.Road, Jaigaon -
@@ -394,6 +488,7 @@ function App() {
       <Home />
       <About />
       <Materials />
+      <Gallery />
       <Contact />
     </div>
   );
