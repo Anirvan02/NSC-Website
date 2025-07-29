@@ -260,10 +260,12 @@ function Materials() {
         {materialsData.map((item, index) => (
           <div
             key={index}
-            className="row align-items-center mb-5 py-4 rounded shadow"
+            className="row align-items-center mb-5 py-4"
             style={{
               flexDirection: index % 2 === 0 ? "row" : "row-reverse",
               backgroundColor: "#ebb41d5f",
+              border: "2px solid #ebb41d",
+              borderRadius: "10px",
               maxWidth: "1200px",
               margin: "0 auto",
               boxShadow: "0 8px 20px rgba(0, 0, 0, 0.3)",
@@ -430,11 +432,10 @@ function Contact() {
               <i className="fa-solid fa-envelope"></i>nscindia2@gmail.com
             </p>
             <p>
-              <i className="fas fa-phone-square-alt"></i>Mob: +91 9733148724 <br /> Tele: 03566 451710 <br /> B.Mob: +975 77602941
+              <i className="fas fa-phone-square-alt"></i>Mob: +91 9733148724 Tele: 03566 451710 <br /> B.Mob: +975 77602941
             </p>
             <p>
-              <i className="fa-solid fa-location-dot"></i>M.G.Road, Jaigaon -
-              736182, <br /> Dist. Alipurduar (W.B.)
+              <i className="fa-solid fa-location-dot"></i>M.G.Road, Jaigaon - 736182, Dist. Alipurduar (W.B.)
             </p>
           </div>
           <div className="contact-right">
@@ -463,7 +464,7 @@ function Contact() {
         </div>
       </div>
       <div className="copyright">
-        <p>Copyright © 2025 National Sales Corporation</p>
+        <p>© 2025 National Sales Corporation. All rights reserved.</p>
       </div>
     </div>
   );
